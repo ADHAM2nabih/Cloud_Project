@@ -1,0 +1,22 @@
+
+services:
+  mysql_db:
+    image: mysql:latest
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: Adhammohamed123456789
+    ports:
+      - "3306:3306"
+
+  myflaskapp:
+    build: .
+    container_name: myflaskapp
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql_db
+    environment:
+      - MYSQL_HOST=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Adhammohamed123456789
+      - MYSQL_DATABASE=mysql_db
